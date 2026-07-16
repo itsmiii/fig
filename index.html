@@ -263,6 +263,8 @@
     renderLedger(document.getElementById("ledger-list-success"), ledger);
     entry.classList.add("hidden");
     success.classList.remove("hidden");
+    const bub = document.querySelector(".slam-bubble");
+    if (bub){ bub.style.animation = "none"; void bub.offsetWidth; bub.style.animation = ""; }
   }
 
   async function redeem(){
