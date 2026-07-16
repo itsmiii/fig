@@ -217,17 +217,21 @@
     e.className = "rain-emoji";
     e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
     e.style.left = Math.random()*100 + "vw";
-    e.style.fontSize = (18 + Math.random()*30) + "px";
-    e.style.animationDuration = (2.5 + Math.random()*3) + "s";
+    var size = 10 + Math.pow(Math.random(), 2) * 90;
+    e.style.fontSize = size + "px";
+    e.style.animationDuration = (6 - size/25) + "s";
     e.style.animationDelay = (Math.random()*1.5) + "s";
     document.body.appendChild(e);
     setTimeout(function(el){ return function(){ el.remove(); }; }(e), 8000);
+    setTimeout(emojiRain, 2500);
   }
 }
 
   function showDenied(last, ledger){
     emojiRain();
-    new Audio("denied.mp3").play().catch(function(){});
+    var deniedAudio = new Audio("denied.mp3");
+    deniedAudio.loop = true;
+    deniedAudio.play().catch(function(){});
     const year = new Date(last).getFullYear();
     document.getElementById("denied-year").textContent = year;
     document.getElementById("denied-date").textContent = fmt(last);
